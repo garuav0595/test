@@ -1,18 +1,30 @@
-name: Echo Workflow
+name: Long Process Test
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_dispatch: # Trigger workflow manually for testing
 
 jobs:
-  echo-job:
+  long-process:
+    name: Long Running Process
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-      - name: Echo Message
-        run: echo "Hello, this is a GitHub Actions workflow!"
+    - name: Set up Environment
+      run: |
+        echo "Setting up environment..."
+        sudo apt-get update
+        sudo apt-get install -y some-dependency
+    
+    - name: Simulate Long Process
+      run: |
+        echo "Starting long process..."
+        sleep 300 # Simulates a 5-minute process
+        echo "Long process complete!"
+    
+    - name: Verify Output
+      run: |
+        echo "Verifying the output of the long process..."
+        echo "Tests completed successfully!"
