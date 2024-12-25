@@ -7,7 +7,7 @@ jobs:
   long-process:
     name: Long Running Process
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
@@ -16,14 +16,14 @@ jobs:
       run: |
         echo "Setting up environment..."
         sudo apt-get update
-        sudo apt-get install -y some-dependency
-    
+        sudo apt-get install -y curl # Install a valid package
+
     - name: Simulate Long Process
       run: |
         echo "Starting long process..."
         sleep 300 # Simulates a 5-minute process
         echo "Long process complete!"
-    
+
     - name: Verify Output
       run: |
         echo "Verifying the output of the long process..."
